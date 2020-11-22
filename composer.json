@@ -1,0 +1,17 @@
+{
+  "require": {
+    "php": "~7.3",
+    "ext-xmlwriter": "*",
+    "ext-xsl": "*",
+    "ext-dom": "*",
+    "erusev/parsedown": "^1.7"
+  },
+  "bin": [
+    "refdoc.php"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Helix\\RefDoc\\": "src/"
+    }
+  }
+}
