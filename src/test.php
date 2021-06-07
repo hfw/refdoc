@@ -139,4 +139,15 @@ class TestClass extends TestAbstract implements TestInterface {
      * My void method.
      */
     private static function testStaticVoid ($unusedRef = null): void {}
+
+    /**
+     * This is a very normal method.
+     *
+     * @param int $foo The first of two normal parameters.
+     * @param string $bar The second, very normal parameter.
+     * @return bool This is the return value's extremely normal comment.
+     */
+    public function aNormalMethod(int $foo, string $bar = 'a very normal default value'): bool {
+        return true; // what an optimistic function this is
+    }
 }
