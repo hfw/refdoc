@@ -3,12 +3,12 @@
 namespace Helix\RefDoc;
 
 use Countable;
-use ReflectionType;
+use ReflectionNamedType;
 
 /**
- * A `ReflectionType` that supports unions and other helpful things.
+ * A `ReflectionNamedType` that supports annotated unions and other helpful things.
  */
-class MagicType extends ReflectionType implements XMLWriterInterface, Countable {
+class MagicType extends ReflectionNamedType implements XMLWriterInterface, Countable {
 
     /**
      * @var string
@@ -21,11 +21,11 @@ class MagicType extends ReflectionType implements XMLWriterInterface, Countable 
     protected $union = [];
 
     /**
-     * @param null|ReflectionType $type Defaults to `mixed`
+     * @param null|ReflectionNamedType $type Defaults to `mixed`
      * @return static
      */
-    public static function from (?ReflectionType $type) {
-        return $type instanceof static ? $type : new static($type ?? 'mixed');
+    public static function from (?ReflectionNamedType $type) {
+        return $type instanceof static ? $type : new static($type ? $type->getName() : 'mixed');
     }
 
     public function __construct (string $def) {
@@ -112,6 +112,9 @@ class MagicType extends ReflectionType implements XMLWriterInterface, Countable 
         return $this->union;
     }
 
+    /**
+     * @return bool
+     */
     public function isBuiltin () {
         return $this->allowsType('/^\??(null|bool|int|float|string|array|object)(\[\])*$/i');
     }

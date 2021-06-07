@@ -15,6 +15,14 @@ trait VisibilityTrait {
     public function getVisibility (): string {
         /** @var Reflector $that */
         $that = $this;
-        return [256 => 'public', 512 => 'protected', 1024 => 'private'][$that->getModifiers() & 1792];
+        if ($that->isPublic()) {
+            return 'public';
+        }
+        if ($that->isProtected()) {
+            return 'protected';
+        }
+        if ($that->isPrivate()) {
+            return 'private';
+        }
     }
 }
