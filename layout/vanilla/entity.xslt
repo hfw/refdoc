@@ -7,7 +7,13 @@
       </xsl:attribute>
       <div class="card-body">
         <h2 class="card-title">
-          <xsl:value-of select="@fqn"/>
+          <a>
+            <xsl:attribute name="href">
+              <xsl:text>#</xsl:text>
+              <xsl:value-of select="@fqn"/>
+            </xsl:attribute>
+            <xsl:value-of select="@fqn"/>
+          </a>
         </h2>
 
         <!-- PARENTS -->
